@@ -43,23 +43,19 @@ public:
     
     void deleteTable(const std::string &name);
     
-    void fetch(const std::string &table_name, const int count, int (*callback)(void *, int, char **, char **), void *sender);
-    void fetch(const std::string &query, int (*callback)(void *, int, char **, char **), void *sender);
-    
     void fetch(SqliteFetch* fetch);
     
     
     
     void insertRecord(const std::string &table_name, const std::map<std::string, std::string>string_values);
-    //void insertRecord(const std::string &table_name, const std::map<std::string, int>int_value);
-    //void deleteRecord();
-    //void updateRecord();
+    
     
     
     static const char* ID;
     static const char* PRIMARY;
     static const char* KEY;
     static const char* AUTOINCREMENT;
+    static const char* DEFAULT(char* default_value);
     
     static const char* _NULL;
     static const char* INTEGER;

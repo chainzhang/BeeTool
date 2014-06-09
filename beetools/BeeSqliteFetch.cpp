@@ -17,7 +17,6 @@ _sql(sql)
 
 SqliteFetch::~SqliteFetch()
 {
-    
 }
 
 std::string SqliteFetch::getSql()

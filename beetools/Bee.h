@@ -11,7 +11,7 @@
 
 #define BEE_NS_BEGIN namespace Bee{
 #define BEE_NS_END   }
-#define USING_NS_BEE using namespace Bee;
+#define USING_NS_BEE using namespace Bee
 
 #include "cocos2d.h"
 

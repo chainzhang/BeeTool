@@ -15,6 +15,11 @@ const char* Sqlite::ID               = " INTEGER PRIMARY KEY AUTOINCREMENT";
 const char* Sqlite::PRIMARY          = " PRIMARY";
 const char* Sqlite::KEY              = " KEY";
 const char* Sqlite::AUTOINCREMENT    = " AUTOINCREMENT";
+const char* Sqlite::DEFAULT(char *default_value) {
+    std::string temp = " DEFAULT ";
+    return temp.append(default_value).c_str();
+}
+
 
 const char* Sqlite::_NULL            = " NULL";
 const char* Sqlite::INTEGER          = " INTEGER";
@@ -121,6 +126,9 @@ void Sqlite::fetch(Bee::SqliteFetch *query)
     _fetch_pipeline.push_back(query);
     std::string sql = query->getSql();
     sqlite3_exec(_db, sql.c_str(), Sqlite::_callBack, this, &_error_msg);
+    delete query;
+    _fetch_pipeline.pop_front();
+    
 }
 
 int Sqlite::_callBack(void *para, int num_col, char **col_value, char **col_name)
