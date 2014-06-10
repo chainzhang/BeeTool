@@ -10,16 +10,15 @@
 
 USING_NS_BEE;
 
-template<class T>
-Math<T>::Math()
+Math::Math()
 {
     std::srand(time(NULL));
 }
 
 
 template<class T>
-T Math<T>::Rand(T min, T max)
+T Math::Rand(T min, T max)
 {
-    if (max < min) return 0;
+    if (max < min) return static_cast<T>(0);
     return rand() % (max - min) + min;
 }

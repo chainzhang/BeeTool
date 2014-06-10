@@ -131,10 +131,11 @@ void Sqlite::fetch(Bee::SqliteFetch *query)
 {
     _fetch_pipeline.push_back(query);
     std::string sql = query->getSql();
-    sqlite3_exec(_db, sql.c_str(), Sqlite::_callBack, this, &_error_msg);
-    delete query;
-    _fetch_pipeline.pop_front();
-    
+    if (sqlite3_exec(_db, sql.c_str(), Sqlite::_callBack, this, &_error_msg))
+    {
+        delete query;
+        _fetch_pipeline.pop_front();
+    }
 }
 
 int Sqlite::_callBack(void *para, int num_col, char **col_value, char **col_name)

@@ -13,11 +13,12 @@
 
 BEE_NS_BEGIN;
 
-template<class T>
 class Math
 {
 public:
     Math();
+    
+    template<class T>
     static T Rand(T min, T max);
 };
 

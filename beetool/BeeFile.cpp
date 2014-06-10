@@ -16,7 +16,7 @@ Json::Value Bee::File::readJSON(const std::string &filename)
     if (!reader.parse(cocos2d::FileUtils::getInstance()->getStringFromFile(filename), temp))
     {
         CCLOG("error");
-        return NULL;
+        return Json::Value::null;
     }
     
     return temp;
