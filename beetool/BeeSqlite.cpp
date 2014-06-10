@@ -100,7 +100,7 @@ void Sqlite::deleteTable(const std::string &name)
 {
     if (tableIsExist(name))
     {
-        std::string sql = "DELETE FROM " + name;
+        std::string sql = "DROP TABLE " + name;
         _result = this->query(sql);
         if (_result != SQLITE_OK)
         {
@@ -108,18 +108,24 @@ void Sqlite::deleteTable(const std::string &name)
         }
     }
 }
-/*
-void Sqlite::fetch(const std::string &query, int (*callback)(void *, int, char **, char **), void *sender)
-{
-    sqlite3_exec(_db, query.c_str(), callback, sender, &_error_msg);
-}
 
-void Sqlite::fetch(const std::string &table_name, const int count, int (*callback)(void *, int, char **, char **), void *sender)
+void Sqlite::emptyTable(const std::string &name)
 {
-    std::string sql = "SELECT * FROM " + table_name + " LIMIT " + std::to_string(count);
-    sqlite3_exec(_db, sql.c_str(), callback, sender, &_error_msg);
+    if (tableIsExist(name))
+    {
+        std::string sql = "DELETE FROM " + name;
+        _result = this->query(sql);
+        if (_result != SQLITE_OK)
+        {
+            CCLOG("エラー%d：%s", _result, _error_msg);
+        }
+        _result = this->query("VACUUM");
+        if (_result != SQLITE_OK)
+        {
+            CCLOG("エラー%d：%s", _result, _error_msg);
+        }
+    }
 }
-*/
 
 void Sqlite::fetch(Bee::SqliteFetch *query)
 {

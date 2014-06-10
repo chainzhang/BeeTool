@@ -40,8 +40,8 @@ public:
     
     void createTable(const std::string &name, char* scheme);
     void createTable(const std::string &query);
-    
     void deleteTable(const std::string &name);
+    void emptyTable(const std::string &name);
     
     void fetch(SqliteFetch* fetch);
     

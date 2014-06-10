@@ -20,5 +20,6 @@ Math<T>::Math()
 template<class T>
 T Math<T>::Rand(T min, T max)
 {
+    if (max < min) return 0;
     return rand() % (max - min) + min;
 }
